@@ -104,13 +104,13 @@ export default function App() {
         <form onSubmit={handleSubmit} noValidate>
 
           {successId && (
-            <div style={{ background: 'rgba(76,175,125,0.1)', border: '1px solid rgba(76,175,125,0.3)', borderRadius: 8, padding: '12px 16px', marginBottom: 20, fontSize: 14, color: '#4caf7d' }}>
+            <div className="banner banner-success">
               ✓ Bug <strong>{successId}</strong> filed successfully!
             </div>
           )}
 
           {serverError && (
-            <div style={{ background: 'rgba(247,95,95,0.1)', border: '1px solid rgba(247,95,95,0.3)', borderRadius: 8, padding: '12px 16px', marginBottom: 20, fontSize: 14, color: '#f75f5f' }}>
+            <div className="banner banner-danger">
               ⚠ {serverError}
             </div>
           )}
@@ -208,7 +208,26 @@ export default function App() {
 
           <style>{`
             @keyframes spin { to { transform: rotate(360deg); } }
-            .error-msg { color: var(--danger); font-size: 11px; margin-top: 4px; display: block; font-weight: 500; }
+            @keyframes fadeIn { from { opacity: 0; transform: translateY(-10px); } to { opacity: 1; transform: translateY(0); } }
+            .banner { 
+              border-radius: 8px; 
+              padding: 12px 16px; 
+              marginBottom: 20px; 
+              font-size: 14px; 
+              animation: fadeIn 0.3s ease-out;
+              margin-bottom: 20px;
+            }
+            .banner-success { 
+              background: rgba(76, 175, 125, 0.1); 
+              border: 1px solid rgba(76, 175, 125, 0.3); 
+              color: #4caf7d; 
+            }
+            .banner-danger { 
+              background: rgba(247, 95, 95, 0.1); 
+              border: 1px solid rgba(247, 95, 95, 0.3); 
+              color: #f75f5f; 
+            }
+            .error-msg { color: var(--danger); font-size: 11px; margin-top: 4px; display: block; font-weight: 500; animation: fadeIn 0.2s ease-out; }
           `}</style>
 
         </form>
